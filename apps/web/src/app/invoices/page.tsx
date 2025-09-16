@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { apiClient } from '@/lib/api';
+import { formatCurrency } from '@/lib/utils';
 import { Invoice } from 'types';
 import Link from 'next/link';
 import { 
@@ -65,13 +66,6 @@ export default function InvoicesPage() {
     } catch {
       return dateString;
     }
-  };
-
-  const formatCurrency = (amount: number, currency: string = 'USD') => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: currency,
-    }).format(amount);
   };
 
   return (
@@ -299,13 +293,6 @@ export default function InvoicesPage() {
 
 // Invoice Details Component
 function InvoiceDetails({ invoice }: { invoice: Invoice }) {
-  const formatCurrency = (amount: number, currency: string = 'USD') => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: currency,
-    }).format(amount);
-  };
-
   const formatDate = (dateString: string) => {
     try {
       return format(new Date(dateString), 'MMMM dd, yyyy');

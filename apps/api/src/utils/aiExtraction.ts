@@ -14,7 +14,7 @@ Extract invoice data from the following text and return ONLY a valid JSON object
   "invoice": {
     "number": "invoice number",
     "date": "invoice date in YYYY-MM-DD format",
-    "currency": "currency code like USD, EUR etc",
+    "currency": "ISO currency code (USD, EUR, INR, GBP, JPY, etc.) - never use symbols like $, €, ₹",
     "subtotal": 0,
     "taxPercent": 0,
     "total": 0,
@@ -45,7 +45,7 @@ export const extractWithGemini = async (pdfBuffer: Buffer): Promise<any> => {
     const text = pdfData.text;
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const result = await model.generateContent(extractionPrompt + text);
     const response = await result.response;

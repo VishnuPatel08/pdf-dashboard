@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.87.4",
     "turbo": "latest"
   }
 }
