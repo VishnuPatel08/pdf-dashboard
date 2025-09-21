@@ -8,6 +8,8 @@
   "packageManager": "npm@10.9.2",
   "scripts": {
     "build": "turbo run build",
+    "build:api": "npm run build --workspace=apps/api",
+    "build:web": "npm run build --workspace=apps/web",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
