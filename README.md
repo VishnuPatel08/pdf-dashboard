@@ -1,3 +1,103 @@
+PDF Viewer + Data Extraction Dashboard
+🎯 Objective
+
+A monorepo project to build a PDF Review Dashboard where users can:
+
+Upload and view PDFs in-browser.
+
+Run AI extraction using Gemini API or Groq.
+
+Edit extracted data, perform CRUD operations, and store data in MongoDB.
+
+Maintain separation of frontend (apps/web) and backend (apps/api).
+
+Follow best practices (linting, error handling, structured code).
+
+🔧 Tech Stack
+
+Monorepo: Turborepo or npm workspaces
+
+Frontend (apps/web): Next.js (App Router) + TypeScript + shadcn/ui
+
+Backend (apps/api): Node.js (TypeScript, REST API)
+
+Database: MongoDB Atlas
+
+AI Integration: Gemini API or Groq
+
+PDF Viewer: pdf.js
+
+Deployment: Vercel (both frontend & backend)
+
+🔹 Core Features
+
+PDF Viewer
+
+Upload local PDF (≤25 MB).
+
+Render with zoom + page navigation.
+
+Store in Vercel Blob or MongoDB GridFS.
+
+AI Data Extraction
+
+“Extract with AI” → choose Gemini or Groq.
+
+Extract invoice fields:
+
+Vendor (name, address, taxId)
+
+Invoice (number, date, currency, subtotal, taxPercent, total, poNumber, poDate)
+
+Line items (description, unitPrice, quantity, total)
+
+Data Editing & CRUD
+
+Edit extracted fields in UI.
+
+Create/Read/Update/Delete invoice records in MongoDB.
+
+List view with search (vendor.name, invoice.number).
+
+API (apps/api)
+
+POST /upload → accepts PDF → { fileId, fileName }
+
+POST /extract → { fileId, model: "gemini" | "groq" } → extracted JSON
+
+GET /invoices (+ ?q= search)
+
+GET /invoices/:id
+
+PUT /invoices/:id
+
+DELETE /invoices/:id
+
+Validations + consistent responses.
+
+UI (apps/web)
+
+Split layout: Left = PDF Viewer, Right = Editable Form.
+
+Buttons: Extract, Save, Delete.
+
+Built with shadcn/ui components (inputs, table, dialogs, toasts).
+
+# Repository Structure
+.
+├── apps
+│   ├── web   # Next.js frontend
+│   └── api   # Node.js backend
+├── packages  # (optional shared types/utils)
+└── README.md
+
+
+
+
+
+
+
+
 # Turborepo starter
 
 This Turborepo starter is maintained by the Turborepo core team.
@@ -37,7 +137,7 @@ This Turborepo has some additional tools already setup for you:
 To build all apps and packages, run the following command:
 
 ```
-cd my-turborepo
+npm install
 
 # With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
 turbo build
